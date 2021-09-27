@@ -31,15 +31,15 @@ public class PlayerStateIdle : IState {
     public void OnExit() { }
 
     public IState Tick() {
-        if(Input.GetMouseButtonDown(0)) {
+        if (Input.GetMouseButtonDown(0)) {
             RaycastHit hit;
-            if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100)) {
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100)) {
                 Debug.Log($"Left clicked on {hit.transform.name}");
 
-                if(hit.collider.CompareTag("Enemy")) {
+                if (hit.collider.CompareTag("Enemy")) {
                     SelectTarget(hit.transform.gameObject);
                     return this;
-                } else if(hit.collider.CompareTag("Gatherable")) {
+                } else if (hit.collider.CompareTag("Gatherable")) {
                     SelectTarget(hit.transform.gameObject);
                     return this;
                 }
@@ -49,10 +49,10 @@ public class PlayerStateIdle : IState {
                 player.agent.destination = hit.point;
                 return player.stateMoving;
             }
-        } else if(Input.GetMouseButtonDown(1)) {
+        } else if (Input.GetMouseButtonDown(1)) {
             RaycastHit hit;
-            if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100)) {
-                if(hit.collider.CompareTag("Enemy")) {
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100)) {
+                if (hit.collider.CompareTag("Enemy")) {
                     Debug.Log($"Right clicked on an enemy {hit.transform.name}");
 
                     //Select and Move
@@ -79,7 +79,7 @@ public class PlayerStateIdle : IState {
     }
 
     private void DeselectTarget() {
-        if(player.target == null) {
+        if (player.target == null) {
             return;
         }
 
